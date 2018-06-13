@@ -1,0 +1,44 @@
+From 757b3bc8499ec030683841570252ab0db7492c9a Mon Sep 17 00:00:00 2001
+From: Martin Lund <malu@gomspace.com>
+Date: Wed, 13 Jun 2018 09:35:30 +0200
+Subject: [PATCH 1/2] Add PS_TAPIDs for various Xilinx UltraScale+ devices
+
+Add TAP_IDs for various Xilinx UltraScale+ devicea and use PS_TAPID for
+XCZU9 as default (Xilinx zcu102 development board).
+---
+ tcl/target/xilinx_ultrascale.cfg | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+diff --git a/tcl/target/xilinx_ultrascale.cfg b/tcl/target/xilinx_ultrascale.cfg
+index 9056c976..a2f6dce4 100644
+--- a/tcl/target/xilinx_ultrascale.cfg
++++ b/tcl/target/xilinx_ultrascale.cfg
+@@ -26,7 +26,24 @@ dap create $_CHIPNAME.dap -chain-position $_CHIPNAME.tap
+ if { [info exists PS_TAPID] } {
+     set _PS_TAPID $PS_TAPID
+ } else {
+-    set _PS_TAPID 0x04710093
++    # XZCU2
++    #set _PS_TAPID 0x14711093
++    # XZCU3
++    #set _PS_TAPID 0x14710093
++    # XZCU4
++    #set _PS_TAPID 0x04721093
++    # XZCU5
++    #set _PS_TAPID 0x04720093
++    # XZCU6
++    #set _PS_TAPID 0x24739093
++    # XZCU7
++    #set _PS_TAPID 0x14730093
++    # XZCU9
++    set _PS_TAPID 0x24738093
++    # ZCU11
++    #set _PS_TAPID 0x04740093
++    # ?
++    #set _PS_TAPID 0x04710093
+ }
+ 
+ set jtag_configured 0
+-- 
+2.17.1
+

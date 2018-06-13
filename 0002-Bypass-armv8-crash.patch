@@ -1,0 +1,34 @@
+From 9a413996d58ce7aa0cec0812f0765f405eb38a8b Mon Sep 17 00:00:00 2001
+From: Martin Lund <malu@gomspace.com>
+Date: Wed, 13 Jun 2018 09:38:50 +0200
+Subject: [PATCH 2/2] Bypass armv8 crash
+
+---
+ src/target/armv8.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/target/armv8.c b/src/target/armv8.c
+index 20f2b671..9725c276 100644
+--- a/src/target/armv8.c
++++ b/src/target/armv8.c
+@@ -1042,7 +1042,7 @@ int armv8_aarch64_state(struct target *target)
+ 		LOG_ERROR("BUG: called for a non-ARM target");
+ 		return ERROR_FAIL;
+ 	}
+-
++/*
+ 	LOG_USER("target halted in %s state due to %s, current mode: %s\n"
+ 		"cpsr: 0x%8.8" PRIx32 " pc: 0x%" PRIx64 "%s",
+ 		armv8_state_strings[arm->core_state],
+@@ -1051,7 +1051,7 @@ int armv8_aarch64_state(struct target *target)
+ 		buf_get_u32(arm->cpsr->value, 0, 32),
+ 		buf_get_u64(arm->pc->value, 0, 64),
+ 		target->semihosting->is_active ? ", semihosting" : "");
+-
++*/
+ 	return ERROR_OK;
+ }
+ 
+-- 
+2.17.1
+
